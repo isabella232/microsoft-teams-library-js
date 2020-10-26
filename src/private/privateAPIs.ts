@@ -205,3 +205,16 @@ export function getConfigSetting(callback: (value: string) => void, key: string)
   const messageId = sendMessageRequestToParent('getConfigSetting', [key]);
   GlobalVars.callbacks[messageId] = callback;
 }
+
+/**
+ * @private
+ * Hide from docs
+ * -------
+ * Allows an app to toggle the audio speaker settings from mute to unmute and vice-versa
+ * @param callback for acknowledgement
+ */
+export function toggleSpeakerAudio(callback: () => void): void {
+  ensureInitialized();
+  const messageId = sendMessageRequestToParent('toggleSpeakerAudio');
+  GlobalVars.callbacks[messageId] = callback;
+}
